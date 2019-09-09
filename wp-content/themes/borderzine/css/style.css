@@ -1,0 +1,121 @@
+/**
+ * 1.1 - Variables
+ * =======================
+ * 1.1.1 - Colors
+ * 1.1.2 - Fonts
+ */
+/**
+  * 1.1.1 Colors - Global and Brand
+  * -----------------------
+  */
+/* Default Variable Names
+ * @red, @orange, @yellow
+ * @green, @blue, @purple
+ * @brown, @gray, @black
+ *
+ * @link
+ * @link_hover
+ * @brand_primary (only use if different from default color already in use)
+ * @brand_secondary (only use if different from default color already in use)
+ *
+ * VARIATIONS
+ * @*_light, @*_dark, @*_transparent
+----------------------------- */
+/**
+ * 1.1.2 - Font Definitions
+ * -----------------------
+ */
+/* @headline
+ * Typeface Name
+ * Used on headlines throughout site
+----------------------------- */
+/* @serif
+ * Typeface Name
+ * For body and other general aplications
+----------------------------- */
+/* @sans
+ * Typeface Name
+ * For labels, bylines, photo credits, etc
+----------------------------- */
+body {
+  color: #282828;
+}
+a {
+  color: #282828;
+}
+a:hover {
+  color: #282828;
+}
+body p,
+.stories .entry-content p {
+  font-size: 14px;
+}
+p,
+#homepage-featured .sub-stories p,
+#homepage-featured .top-story p {
+  font-family: "open sans";
+  color: #282828;
+  font-size: 14px;
+}
+.entry-content h5.top-tag a,
+.widget h5.top-tag a,
+h5.top-tag a,
+b {
+  color: #d24f2f;
+}
+/**
+ * 5.0 - Single
+ * =======================
+ * 5.1 - Single Template Spacing
+ * 5.2 - Single Header
+ * 5.3 - Single Body
+ * 5.4 - Single Footer
+ * 5.5 - Comments
+ */
+/**
+  * 5.1 - Single Template Spacing
+  * -----------------------
+  */
+/**
+  * 5.2 - Single Header
+  * -----------------------
+  */
+/**
+  * 5.3 - Single Body
+  * -----------------------
+  */
+/**
+  * 5.4 - Footer
+  * -----------------------
+  */
+/**
+  * 5.5 - Comments
+  * -----------------------
+  */
+/**
+ * 6.0 Archive
+ * =======================
+ * 6.1 - Category and Date Archives
+ * 6.2 - Series Archives
+ * 6.3 - Author Archives
+ */
+/**
+  * 6.1 - Category and Date Archives
+  * -----------------------
+  */
+/**
+  * 6.2 - Series Archives
+  * -----------------------
+  */
+/**
+  * 6.3 - Author Archives
+  * -----------------------
+  */
+.dontate-btn {
+  background-color: #d24f2f;
+}
+#main-nav.navbar {
+  border-top: none;
+  border-bottom: 2px solid #d24f2f;
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImxlc3MvdHlwb2dyYXBoeS5sZXNzIiwibGVzcy92YXJpYWJsZXMubGVzcyIsImxlc3MvaW5jL2hlYWRlci5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQUFBO0VBQ0UsY0FBQTs7QUFHRjtFQUNFLGNBQUE7O0FBQ0EsQ0FBQztFQUNDLGNBQUE7O0FBSUosSUFBSztBQUNMLFFBQVMsZUFBZTtFQUN0QixlQUFBOztBQUdGO0FBQ0Esa0JBQW1CLGFBQWE7QUFDaEMsa0JBQW1CLFdBQVc7RUFDN0IsYUNvQ00sV0RwQ047RUFDQSxjQUFBO0VBQ0EsZUFBQTs7QUFHRCxjQUFlLEdBQUUsUUFBUztBQUMxQixPQUFRLEdBQUUsUUFBUztBQUNuQixFQUFFLFFBQVM7QUFBRztFQUNiLGNBQUE7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FFM0JEO0VBQ0MseUJBQUE7O0FBRUQsU0FBUztFQUNSLGdCQUFBO0VBQ0EsZ0NBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgY29sb3I6IEBibGFjaztcbn1cblxuYSB7XG4gIGNvbG9yOiBAYmxhY2s7XG4gICY6aG92ZXIge1xuICAgIGNvbG9yOiBAYmxhY2s7XG4gIH1cbn1cblxuYm9keSBwLFxuLnN0b3JpZXMgLmVudHJ5LWNvbnRlbnQgcHtcbiAgZm9udC1zaXplOiAxNHB4O1xufVxuXG5wLCBcbiNob21lcGFnZS1mZWF0dXJlZCAuc3ViLXN0b3JpZXMgcCwgXG4jaG9tZXBhZ2UtZmVhdHVyZWQgLnRvcC1zdG9yeSBwIHtcblx0Zm9udC1mYW1pbHk6IEBzYW5zO1xuXHRjb2xvcjogQGJsYWNrO1xuXHRmb250LXNpemU6IDE0cHg7XG59XG5cbi5lbnRyeS1jb250ZW50IGg1LnRvcC10YWcgYSwgXG4ud2lkZ2V0IGg1LnRvcC10YWcgYSwgXG5oNS50b3AtdGFnIGEsIGIge1xuXHRjb2xvcjogQG9yYW5nZTtcbn0iLCIvKipcbiAqIDEuMSAtIFZhcmlhYmxlc1xuICogPT09PT09PT09PT09PT09PT09PT09PT1cbiAqIDEuMS4xIC0gQ29sb3JzXG4gKiAxLjEuMiAtIEZvbnRzXG4gKi9cblxuXG4gLyoqXG4gICogMS4xLjEgQ29sb3JzIC0gR2xvYmFsIGFuZCBCcmFuZFxuICAqIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4gICovXG5cbi8qIERlZmF1bHQgVmFyaWFibGUgTmFtZXNcbiAqIEByZWQsIEBvcmFuZ2UsIEB5ZWxsb3dcbiAqIEBncmVlbiwgQGJsdWUsIEBwdXJwbGVcbiAqIEBicm93biwgQGdyYXksIEBibGFja1xuICpcbiAqIEBsaW5rXG4gKiBAbGlua19ob3ZlclxuICogQGJyYW5kX3ByaW1hcnkgKG9ubHkgdXNlIGlmIGRpZmZlcmVudCBmcm9tIGRlZmF1bHQgY29sb3IgYWxyZWFkeSBpbiB1c2UpXG4gKiBAYnJhbmRfc2Vjb25kYXJ5IChvbmx5IHVzZSBpZiBkaWZmZXJlbnQgZnJvbSBkZWZhdWx0IGNvbG9yIGFscmVhZHkgaW4gdXNlKVxuICpcbiAqIFZBUklBVElPTlNcbiAqIEAqX2xpZ2h0LCBAKl9kYXJrLCBAKl90cmFuc3BhcmVudFxuLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0gKi9cblxuQGJsYWNrOiAjMjgyODI4O1xuQHdoaXRlOiAjZmZmO1xuQGdyYXlfbGlnaHQ6ICM2NjY7XG5AZ3JleV9kYXJrOiAjMjIyO1xuQG9yYW5nZTogI0QyNEYyRjtcblxuLyoqXG4gKiAxLjEuMiAtIEZvbnQgRGVmaW5pdGlvbnNcbiAqIC0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tXG4gKi9cblxuLyogQGhlYWRsaW5lXG4gKiBUeXBlZmFjZSBOYW1lXG4gKiBVc2VkIG9uIGhlYWRsaW5lcyB0aHJvdWdob3V0IHNpdGVcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICovXG5AaGVhZGxpbmU6IFwiIFwiLCBcIkdlb3JnaWFcIiwgc2VyaWY7XG5cbi8qIEBzZXJpZlxuICogVHlwZWZhY2UgTmFtZVxuICogRm9yIGJvZHkgYW5kIG90aGVyIGdlbmVyYWwgYXBsaWNhdGlvbnNcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICovXG5AYm9keTogXCIgXCIsIFwiR2VvcmdpYVwiLHNlcmlmO1xuXG5cbi8qIEBzYW5zXG4gKiBUeXBlZmFjZSBOYW1lXG4gKiBGb3IgbGFiZWxzLCBieWxpbmVzLCBwaG90byBjcmVkaXRzLCBldGNcbi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tICovXG5Ac2FuczogXCJvcGVuIHNhbnNcIjtcbiIsIi5kb250YXRlLWJ0biB7XG5cdGJhY2tncm91bmQtY29sb3I6IEBvcmFuZ2U7XG59XG4jbWFpbi1uYXYubmF2YmFyIHtcblx0Ym9yZGVyLXRvcDogbm9uZTtcblx0Ym9yZGVyLWJvdHRvbTogMnB4IHNvbGlkIEBvcmFuZ2U7XG59Il19 */
