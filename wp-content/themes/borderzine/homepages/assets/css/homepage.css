@@ -1,0 +1,7 @@
+@media (max-width: 999px) {
+  #homepage-bottom,
+  #homepage-sidebar {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImhvbWVwYWdlcy9hc3NldHMvbGVzcy9ob21lcGFnZS5sZXNzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUtBLFFBSDhCO0VBRzlCO0VBQUE7SUFGUSxXQUFBIiwic291cmNlc0NvbnRlbnQiOlsiI2hvbWVwYWdlLWJvdHRvbSxcbiNob21lcGFnZS1zaWRlYmFyIHtcbiAgICBAbWVkaWEgKG1heC13aWR0aDogOTk5cHgpIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgfVxufSJdfQ== */
