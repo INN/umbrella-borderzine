@@ -68,7 +68,7 @@ $topstory_classes = 'top-story span8';
 							
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
-							<?php largo_excerpt( get_post(), 3 ); ?>
+							<?php largo_excerpt( get_post(), 2 ); ?>
 						</div>
 					<?php elseif ( $count == 4 ) : ?>
 						<h4 class="subhead"><?php _e('More Headlines', 'largo'); ?></h4>
@@ -83,10 +83,27 @@ $topstory_classes = 'top-story span8';
 	<?php } ?>
 </div>
 <div class="row-fluid clearfix">
-    <div id="homepage-bottom" class="span8">
+    <div id="homepage-after-featured" class="span8">
+        <div class="homepage-middle-4x4">
         <?php
-            dynamic_sidebar( 'Homepage Bottom' );
+            dynamic_sidebar( 'Homepage Middle 4x4' );
         ?>
+        </div>
+        <div class="homepage-middle-1x3">
+        <?php
+            dynamic_sidebar( 'Homepage Middle 1x3' );
+        ?>
+        </div>
+        <div class="homepage-middle-1x1x1">
+        <?php
+            dynamic_sidebar( 'Homepage Middle 1x1x1' );
+        ?>
+        </div>
+        <div class="homepage-middle-bottom">
+            <?php
+                dynamic_sidebar( 'Homepage Bottom' );
+            ?>
+        </div>
     </div>
     <div id="homepage-sidebar" class="span4">
         <?php
