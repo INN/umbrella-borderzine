@@ -34,21 +34,63 @@
     .widgettitle {
         font-size: 15px;
     }
-    .homepage-middle-1x1x1 {
-        display: inline-flex;
-        ul {
-            li {
-                img {
-                    height: 140px;
+    .homepage-middle-4x4 {
+        display: flex;
+        aside {
+            flex-grow: 1;
+            flex-basis: 0;
+            width: auto;
+            padding-top: 0;
+            &.odd {
+                border-right: 1px solid @gray_light;
+            }
+            ul {
+                li {
+                    border-bottom: 1px solid @gray_light;
+                    padding-bottom: 20px;
+                    &:not(:first-of-type) {
+                        a:first-of-type {
+                            width: 25%;
+                            float: left;
+                            padding-right: 10px;
+                        }
+                        h5 {
+                            font-size: 14px;
+                            a {
+                                width: 65%!important;
+                            }
+                        }
+                        p {
+                            display: none;
+                        }
+                    }
                 }
             }
         }
-        @media (max-width: 768px) {
-            display: block;
+    }
+    .homepage-middle-1x1x1 {
+        display: inline-flex;
+        aside {
+            flex-grow: 1;
+            flex-basis: 0;
+            h3 {
+                border-bottom: 1px solid @gray_light;
+                margin-bottom: 20px;
+            }
             ul {
                 li {
                     img {
-                        height: auto;
+                        height: 140px;
+                    }
+                }
+            }
+            @media (max-width: 768px) {
+                display: block;
+                ul {
+                    li {
+                        img {
+                            height: auto;
+                        }
                     }
                 }
             }
@@ -67,6 +109,10 @@
                 @media (max-width: 999px) {
                     padding-left: 0;
                 }
+            }
+            h3 {
+                border-bottom: 1px solid @gray_light;
+                margin-bottom: 20px;
             }
             ul {
                 display: flex;
