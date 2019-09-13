@@ -68,6 +68,46 @@
             }
         }
     }
+    .homepage-middle-1x3 {
+        display: flex;
+        aside {
+            flex-grow: 1;
+            flex-basis: 0;
+            width: auto;
+            padding: 0;
+            h3 {
+                border-bottom: 1px solid @gray_light;
+            }
+            ul {
+                padding: 4.5%;
+                margin-top: 0;
+            }
+            &.odd {
+                ul {
+                    border-right: 1px solid @gray_light;
+                }
+            }
+            &.even {
+                ul {
+                    li {
+                        border-bottom: 1px solid @gray_light;
+                        padding-bottom: 20px;
+                        a:first-of-type {
+                            width: 25%;
+                            float: left;
+                            padding-right: 10px;
+                        }
+                        h5 {
+                            font-size: 14px;
+                            a {
+                                width: 65%!important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     .homepage-middle-1x1x1 {
         display: inline-flex;
         aside {
