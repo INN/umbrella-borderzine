@@ -1,18 +1,33 @@
-## Setup instructions
+## Cloning a wordpress site via valet
 
-This repository is designed to be set up in accordance with the VVV install instructions in INN/docs, that were introduced with https://github.com/INN/docs/pull/148, or with the Laravel Valet instructions in INN/docs that were indroduced with https://github.com/INN/docs/pull/187.
+Prerequisites: Having a running install of [Laravel Valet](https://laravel.com/docs/5.6/valet) and the [WordPress command-line interface `wp`](http://wp-cli.org/).
 
-The current version of those docs can be found at https://github.com/INN/docs/blob/master/projects/largo/umbrella-setup.md
-
-Things you need:
-
-- site URL: `TKTKNAME`
-- project name: `TKTKNAME`
-- site theme/plugin textdomain: `TKTKNAME`
-- Constant name for constant variable purposes: `TKTKNAME`
-- Env vars:
-	- `TKTKNAME_PRODUCTION_SFTP_HOST`
-	- `TKTKNAME_PRODUCTION_SFTP_PATH`
-	- `TKTKNAME_STAGING_SFTP_HOST`
-	- `TKTKNAME_STAGING_SFTP_PATH`
-	- `TKTKNAME_SFTP_USER` and `TKTKNAME_SFTP_PASSWORD`
+1. `cd` to the directory where you have chosen to keep your valet sites.
+	- You can find this directory by running `valet paths`; the appropriate directory will not be the one with `/.valet/` in its path.
+	- If that command returns no appropriate directory, or no paths at all, you should create a directory on your computer to hold Valet site install directories. `mkdir ~/sites/` will create a folder named `sites` in your user's home directory. Then, run `cd ~/sites/` to go there, and `valet park` to [register this directory with Valet](https://laravel.com/docs/5.6/valet#the-park-command) so that all subdirectories will be served as `.test` domains.
+2. Create the install's directory:
+	- If an umbrella repo exists:
+		1. `git clone git@github.com:INN/umbrella-borderzine`
+		2. `git submodule update --init --recursive`
+3. `cd umbrella-borderzine`
+4. `wp core download`
+5. `wp config create --dbname=example --dbuser=<user> --dbpass=<pass>`, where `<user>` and `<pass>` are the database username and password for your computer.
+6. `wp db create`
+	- if you're working on a multisite, you'll need to add some things to `wp-config.php`. The best way to do that is
+		1. `wp core install `
+		2. `wp core multisite-convert --subdomains --base=borderzine.test --title=foo`
+			- where `borderzine.test` is the domain created by Valet for this directory
+			- `--title=foo` must be passed but is unimportant and will be reset when you load the database.
+7. `wp db reset`
+8. download the sql file, through phpmyadmin/flywheel's interface
+9. `wp db import database.sql`, replacing `database.sql` with the path to the database you downloaded
+	- If the output of that command contains `ERROR 2006 (HY000) at line 488: MySQL server has gone away` or your mysql error log contains `[Note] Aborted connection 10 to db: 'example' user: 'user' host: 'localhost' (Got a packet bigger than 'max_allowed_packet' bytes)`, [this StackOverflow solution worked for Ben on 2018-08-22](https://stackoverflow.com/a/722656).
+		- Find your mysql error log on OSX by running `ps auxww | grep mysqld` and looking for a string like `--log-error=/usr/local/var/mysql/example.local.err`
+10. `wp search-replace borderzine.com borderzine.test --url=borderzine.com  --all-tables-with-prefix`
+	- if you're doing a multisite, make sure to rerun that command, replacing `borderzine.com` with `subdomain.org` and `borderzine.test` with `subdomain.borderzine.test`, and changing the `--url=` parameter to match the valet domain that you just set everything to in the preceding search-replace:
+		- `wp search-replace subdomain.org subdomain.borderzine.com --url=borderzine.test --all-tables-with-prefix`
+		- `wp search-replace subdomain.borderzine.com subdomain.borderzine.com --url=borderzine.test --all-tables-with-prefix`
+		- if you're not sure what the URLs for the sites in the multisite are, check the `wp_blogs` table.
+11. Optionally, run `valet secure` to serve this site locally over HTTPS using a self-signed certificate. For more about this command, see [the Laravel Valet docs](https://laravel.com/docs/5.6/valet#securing-sites).
+12. Optionally, download images and uploads via SFTP. You'll probably only need the newest month's images and the images referenced in the theme settings. Feel free to upload replacement images to the new development site via the normal browser interface.
+13. In the repo's child theme, if there's a `package.json`, run `npm install`
