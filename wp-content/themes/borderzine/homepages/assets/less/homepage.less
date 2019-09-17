@@ -1,0 +1,190 @@
+@import (reference) '../../../less/variables.less';
+
+#homepage-after-featured,
+#homepage-sidebar {
+    @media (max-width: 999px) {
+        width: 100%;
+    }
+}
+#homepage-sidebar {
+    border-left: 1px solid @gray_light;
+    margin-top: 1.5%;
+    padding: 0 1.5%;
+    @media (max-width: 999px) {
+        border-left: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+#homepage-after-featured {
+    margin-top: @baseline;
+    .widget {
+        width: 42.5%;
+        padding: 2.5%;
+        &.odd {
+            float: left;
+            clear: both;
+            margin-left: 0;
+        }
+        &.even {
+            float: right;
+            clear: none;
+        }
+    }
+    .widgettitle {
+        font-size: 15px;
+    }
+    .homepage-middle-4x4 {
+        display: flex;
+        aside {
+            flex-grow: 1;
+            flex-basis: 0;
+            width: auto;
+            padding-top: 0;
+            &.odd {
+                border-right: 1px solid @gray_light;
+            }
+            ul {
+                li {
+                    border-bottom: 1px solid @gray_light;
+                    padding-bottom: 20px;
+                    &:not(:first-of-type) {
+                        a:first-of-type {
+                            width: 25%;
+                            float: left;
+                            padding-right: 10px;
+                        }
+                        h5 {
+                            font-size: 14px;
+                            a {
+                                width: 65%!important;
+                            }
+                        }
+                        p {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .homepage-middle-1x3 {
+        display: flex;
+        aside {
+            flex-grow: 1;
+            flex-basis: 0;
+            width: auto;
+            padding: 0;
+            h3 {
+                border-bottom: 1px solid @gray_light;
+            }
+            ul {
+                padding: 4.5%;
+                margin-top: 0;
+            }
+            &.odd {
+                ul {
+                    border-right: 1px solid @gray_light;
+                }
+            }
+            &.even {
+                ul {
+                    li {
+                        border-bottom: 1px solid @gray_light;
+                        padding-bottom: 20px;
+                        a:first-of-type {
+                            width: 25%;
+                            float: left;
+                            padding-right: 10px;
+                        }
+                        h5 {
+                            font-size: 14px;
+                            a {
+                                width: 65%!important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .homepage-middle-1x1x1 {
+        display: inline-flex;
+        aside {
+            flex-grow: 1;
+            flex-basis: 0;
+            h3 {
+                border-bottom: 1px solid @gray_light;
+                margin-bottom: 20px;
+            }
+            ul {
+                li {
+                    img {
+                        height: 140px;
+                    }
+                }
+            }
+            @media (max-width: 768px) {
+                display: block;
+                ul {
+                    li {
+                        img {
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .homepage-middle-bottom {
+        .widget {
+            width: 100%;
+            &.even {
+                float: left;
+                @media (max-width: 999px) {
+                    padding-left: 0;
+                }
+            }
+            &.odd {
+                @media (max-width: 999px) {
+                    padding-left: 0;
+                }
+            }
+            h3 {
+                border-bottom: 1px solid @gray_light;
+                margin-bottom: 20px;
+            }
+            ul {
+                display: flex;
+                flex-direction: row;
+                li {
+                    flex-grow: 1;
+                    flex-basis: 0;
+                    margin: 0 15px;
+                    img {
+                        height: 160px;
+                    }
+                }
+                @media (max-width: 768px) {
+                    display: block;
+                    li {
+                        margin: 0;
+                        img {
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @media (max-width: 768px) {
+        .widget.odd,
+        .widget.even {
+            width: 95%;
+            clear: both;
+            float: none;
+            padding-left: 2.5%;
+            padding-right: 2.5%;
+        }
+    }
+}
