@@ -62,7 +62,7 @@ function borderzine_sidebar_shortcode( $atts = array(), $content = '', $tag = ''
 		return '';
 	}
 	ob_start();
-	do_action( 'borderzine_sidebar', $atts );
+	do_action( 'borderzine_shortcode_sidebar', $atts );
 	$ret = ob_get_clean();
 	return $ret;
 }
@@ -79,4 +79,4 @@ function borderzine_do_sidebar( $args ) {
 		dynamic_sidebar( esc_attr( $args['sidebar'] ) );
 	}
 }
-add_action( 'borderzine_sidebar', 'borderzine_do_sidebar' );
+add_action( 'borderzine_shortcode_sidebar', 'borderzine_do_sidebar' );
