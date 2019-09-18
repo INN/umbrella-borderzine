@@ -46,3 +46,37 @@ function borderzine_stylesheets() {
 
 }
 add_action( 'wp_enqueue_scripts', 'borderzine_stylesheets', 20 );
+
+/**
+ * The Borderzine sidebar shortcode function
+ *
+ * @param Array $atts Shortcode attributes or block properties.
+ * @param String $content Shortcode wrapped text; not used in this shortcode.
+ * @param String $tag The complete shortcode tag; not used in this shortcode.
+ * @return HTML
+ * @since 0.1
+ */
+function borderzine_sidebar_shortcode( $atts = array(), $content = '', $tag = '' ) {
+	// This is the shortcode that disables doing shortcodes.
+	if ( isset( $atts['no'] ) ) {
+		return '';
+	}
+	ob_start();
+	do_action( 'borderzine_sidebar', $atts );
+	$ret = ob_get_clean();
+	return $ret;
+}
+add_shortcode( 'borderzine_sidebar', 'borderzine_sidebar_shortcode' );
+
+/**
+ * Outputs the sidebar that is passed into the `sidebar` arg
+ *
+ * @param Array $args Shortcode attributes or block properties.
+ * @since 0.1
+ */
+function borderzine_do_sidebar( $args ) {
+	if ( isset( $args['sidebar'] ) ) {
+		dynamic_sidebar( esc_attr( $args['sidebar'] ) );
+	}
+}
+add_action( 'borderzine_sidebar', 'borderzine_do_sidebar' );
