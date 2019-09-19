@@ -165,13 +165,34 @@
         }
     }
     @media (max-width: 768px) {
+        .homepage-middle-4x4,
+        .homepage-middle-1x3,
+        .homepage-middle-1x1x1 {
+            display: block;
+            aside {
+                ul {
+                    border-right: none!important;
+                    border-left: none;
+                    padding: inherit!important;
+                }
+            }
+        }
         .widget.odd,
         .widget.even {
-            width: 95%;
+            width: 100%;
             clear: both;
             float: none;
-            padding-left: 2.5%;
-            padding-right: 2.5%;
+            padding-left: 0;
+            padding-right: 0;
+            border-right: none!important;
+            border-left: none!important;
+            ul {
+                li {
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
         }
     }
 }
