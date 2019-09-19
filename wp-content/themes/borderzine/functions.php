@@ -57,10 +57,6 @@ add_action( 'wp_enqueue_scripts', 'borderzine_stylesheets', 20 );
  * @since 0.1
  */
 function borderzine_sidebar_shortcode( $atts = array(), $content = '', $tag = '' ) {
-	// This is the shortcode that disables doing shortcodes.
-	if ( isset( $atts['no'] ) ) {
-		return '';
-	}
 	ob_start();
 	do_action( 'borderzine_shortcode_sidebar', $atts );
 	$ret = ob_get_clean();
