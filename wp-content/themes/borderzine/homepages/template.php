@@ -68,6 +68,7 @@ $topstory_classes = 'top-story span8';
 							
 							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+							<h5 class="byline"><?php largo_byline( true, false, get_the_ID() ); ?></h5>
 							<?php largo_excerpt( get_post(), 2 ); ?>
 						</div>
 					<?php elseif ( $count == 4 ) : ?>

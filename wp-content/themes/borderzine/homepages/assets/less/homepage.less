@@ -1,5 +1,35 @@
 @import (reference) '../../../less/variables.less';
 
+.home {
+    .stories {
+      img.attachment-medium {
+        max-width: 45%;
+      }
+    }
+    .sub-stories {
+      img.attachment-thumbnail {
+        max-width: 45%;
+      }
+    }
+    #homepage-featured {
+      border-top: none;
+      border-right: none;
+      border-left: none;
+      border-bottom: 2px solid @orange;
+      .story {
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 2px solid @orange;
+      }
+      .sub-stories {
+        .story {
+          border: none;
+        }
+      }
+    }
+}
+
 #homepage-after-featured,
 #homepage-sidebar {
     @media (max-width: 999px) {
@@ -30,6 +60,11 @@
             float: right;
             clear: none;
         }
+        li {
+            h5 {
+                margin-bottom: 0.5em;
+            }
+        }
     }
     .widgettitle {
         font-size: 15px;
@@ -46,22 +81,10 @@
             }
             ul {
                 li {
-                    border-bottom: 1px solid @gray_light;
                     padding-bottom: 20px;
                     &:not(:first-of-type) {
-                        a:first-of-type {
-                            width: 25%;
-                            float: left;
-                            padding-right: 10px;
-                        }
                         h5 {
                             font-size: 14px;
-                            a {
-                                width: 65%!important;
-                            }
-                        }
-                        p {
-                            display: none;
                         }
                     }
                 }
@@ -90,11 +113,8 @@
             &.even {
                 ul {
                     li {
-                        border-bottom: 1px solid @gray_light;
                         padding-bottom: 20px;
                         a:first-of-type {
-                            width: 25%;
-                            float: left;
                             padding-right: 10px;
                         }
                         h5 {
@@ -178,13 +198,34 @@
         }
     }
     @media (max-width: 768px) {
+        .homepage-middle-4x4,
+        .homepage-middle-1x3,
+        .homepage-middle-1x1x1 {
+            display: block;
+            aside {
+                ul {
+                    border-right: none!important;
+                    border-left: none;
+                    padding: inherit!important;
+                }
+            }
+        }
         .widget.odd,
         .widget.even {
-            width: 95%;
+            width: 100%;
             clear: both;
             float: none;
-            padding-left: 2.5%;
-            padding-right: 2.5%;
+            padding-left: 0;
+            padding-right: 0;
+            border-right: none!important;
+            border-left: none!important;
+            ul {
+                li {
+                    img {
+                        width: 100%;
+                    }
+                }
+            }
         }
     }
 }
