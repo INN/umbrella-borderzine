@@ -76,3 +76,28 @@ function borderzine_do_sidebar( $args ) {
 	}
 }
 add_action( 'borderzine_shortcode_sidebar', 'borderzine_do_sidebar' );
+
+/**
+ * Determine whether or not a user has an avatar. Fallback checks if user has a gravatar.
+ *
+ * @param $email string an author's email address
+ * @return bool true if an avatar is available for this user
+ * @since 0.1
+ */
+function borderzine_has_avatar( $email ) {
+	$user = get_user_by( 'email', $email );
+	if ( ! empty( $user ) ) {
+		$result = largo_get_user_avatar_id( $user->ID );
+		if ( ! empty ( $result ) ) {
+			return true;
+		// this checks if the user has a photo placed by the User Photo plugin
+		} else if( userphoto_the_author_thumbnail() ){
+			return true;
+		} else {
+			if ( largo_has_gravatar( $email ) ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
