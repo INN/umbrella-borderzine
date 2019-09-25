@@ -91,7 +91,7 @@ function borderzine_has_avatar( $email ) {
 		if ( ! empty ( $result ) ) {
 			return true;
 		// this checks if the user has a photo placed by the User Photo plugin
-		} else if( userphoto_the_author_thumbnail() ){
+		} else if( function_exists( userphoto_the_author_thumbnail() ) ){
 			return true;
 		} else {
 			if ( largo_has_gravatar( $email ) ) {
