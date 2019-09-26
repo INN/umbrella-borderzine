@@ -75,7 +75,6 @@ class Borderzine_Byline {
         $this->avatar();
         $this->author_link();
         $this->maybe_published_date();
-        $this->excerpt();
 
 		// The generic parts
         $this->edit_link();
@@ -108,7 +107,7 @@ class Borderzine_Byline {
 				$output = get_the_post_thumbnail( $this->author->ID, array( 60,60 ) );
 				$output = str_replace( 'attachment-32x32', 'avatar avatar-32 photo', $output );
 				$output = str_replace( 'wp-post-image', '', $output );
-			} else if ( largo_has_avatar( $author_email ) ) {
+			} else if ( borderzine_has_avatar( $author_email ) ) {
 				$output = get_avatar(
 					$author_email,
 					32,
