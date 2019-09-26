@@ -6,6 +6,7 @@
  */
 $includes = array(
 	'/inc/byline_class.php',
+	'/inc/compat-bunyad.php',
 	'/inc/post-tags.php',
 );
 foreach ( $includes as $include ) {
