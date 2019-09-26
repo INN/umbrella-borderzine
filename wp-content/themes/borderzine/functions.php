@@ -118,3 +118,23 @@ function borderzine_search_posts_by_author( $posts_search, $wp_query_obj ) {
 
 }
 add_filter( 'posts_search', 'borderzine_search_posts_by_author', 10, 2 );
+
+/**
+ * Finds author ids by their display name
+ * 
+ * @param String $display_name The display name to search for
+ * @return String $user->ID The ID of the matched author
+ */
+function get_author_id_by_display_name( $display_name ) {
+
+	global $wpdb;
+	
+	$display_name = sanitize_text_field( $display_name );
+
+    if( !$user = $wpdb->get_row( $wpdb->prepare( "SELECT `ID` FROM $wpdb->users WHERE `display_name` = %s", $display_name ) ) ){
+		return false;
+	}
+
+	return $user->ID;
+	
+}
