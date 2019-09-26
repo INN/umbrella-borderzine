@@ -76,3 +76,45 @@ function borderzine_do_sidebar( $args ) {
 	}
 }
 add_action( 'borderzine_shortcode_sidebar', 'borderzine_do_sidebar' );
+
+/**
+ * Modifies the default WordPress search query to see if the 
+ * search terms match any author names and return any posts found by said author
+ * 
+ * @param String $posts_search SQL query for the search
+ * @param Object $wp_query_obj The current wp_query object
+ * @return String $posts_search SQL query for the search
+ * @since 0.1
+ */
+function borderzine_search_posts_by_author( $posts_search, $wp_query_obj ) {
+
+	if ( !is_search() || empty( $posts_search ) ) {
+		return $posts_search;
+	}
+
+	global $wpdb;
+
+	// search all authors to see if any having a name that matches the search term
+	$search = sanitize_text_field( get_query_var( 's' ) );
+	$args = array(
+		'count_total' => false,
+		'search' => sprintf( '*%s*', $search ),
+		'search_fields' => array(
+			'display_name',
+		),
+		'fields' => 'ID',
+	);
+	$matching_users = get_users( $args );
+
+	// don't modify the query if there aren't any matching users
+	if ( empty( $matching_users ) ) {
+		return $posts_search;
+	}
+
+	// modify our posts search query to also search for posts with matching user
+	$posts_search = str_replace( ')))', ")) OR ( {$wpdb->posts}.post_author IN (" . implode( ',', array_map( 'absint', $matching_users ) ) . ")))", $posts_search );
+
+	return $posts_search;
+
+}
+add_filter( 'posts_search', 'borderzine_search_posts_by_author', 10, 2 );
