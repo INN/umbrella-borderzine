@@ -10,6 +10,7 @@ module.exports = function(grunt) {
     
     var CSS_LESS_FILES = {
         'css/style.css': 'less/style.less',
+        'css/series-landing-one-column.css': 'less/series-landing-one-column.less',
         'homepages/assets/css/homepage.css': 'homepages/assets/less/homepage.less',
     };
 

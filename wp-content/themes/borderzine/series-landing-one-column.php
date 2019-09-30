@@ -3,6 +3,20 @@
  * Template Name: Single-column Series Landing Page
  * Description: A series landing page without the central loop of posts, and without sidebars as such.
  */
+
+// enqueue the specific stylesheet
+add_action( 'wp_enqueue_scripts', function() {
+	$suffix = (LARGO_DEBUG) ? '.min' : '';
+
+	wp_enqueue_style(
+		'series-landing-one-column',
+		get_stylesheet_directory_uri() . '/css/series-landing-one-column' . $suffix . '.css',
+		array(),
+		filemtime( get_stylesheet_directory() . '/css/series-landing-one-column' . $suffix . '.css' )
+	);
+});
+
+// start the page
 get_header();
 
 // Load up our meta data and whatnot
