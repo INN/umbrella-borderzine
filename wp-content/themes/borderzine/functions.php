@@ -163,7 +163,7 @@ add_filter( 'posts_search', 'borderzine_search_posts_by_author', 10, 2 );
  * Finds author ids by their display name
  * 
  * @param String $display_name The display name to search for
- * @return String $user->ID The ID of the matched author
+ * @return String $user_ids The IDs of matched users from the display name
  */
 function get_author_id_by_display_name( $display_name ) {
 
@@ -171,10 +171,16 @@ function get_author_id_by_display_name( $display_name ) {
 	
 	$display_name = sanitize_text_field( $display_name );
 
-    if( !$user = $wpdb->get_row( $wpdb->prepare( "SELECT `ID` FROM $wpdb->users WHERE `display_name` = %s", $display_name ) ) ){
+    if( !$users = $wpdb->get_results( $wpdb->prepare( "SELECT `ID` FROM $wpdb->users WHERE `display_name` LIKE '%%%s%%%'", $wpdb->esc_like( $display_name ) ) ) ){
 		return false;
 	}
 
-	return $user->ID;
+	$user_ids = array();
+
+	foreach( $users as $user ){
+		array_push( $user_ids, $user->ID );
+	}
+
+	return $user_ids;
 	
 }

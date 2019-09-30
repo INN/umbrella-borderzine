@@ -108,9 +108,9 @@ get_header();
 
 			<h3 class="recent-posts clearfix">
 				<?php
-					// check if search query matches an author name and if it does, add 1 to found_posts int
+					// check if search query matches an author name and if it does, add to the found_posts count
 					if( get_author_id_by_display_name( get_search_query() ) ){
-						$wp_query->found_posts = $wp_query->found_posts + 1;
+						$wp_query->found_posts = $wp_query->found_posts + count( get_author_id_by_display_name( get_search_query() ) );
 					}
 
 					printf( __('Your search for <span class="search-term">%s</span> returned ', 'largo'), get_search_query() );
@@ -125,9 +125,13 @@ get_header();
 				if( get_author_id_by_display_name( get_search_query() ) ){
 
 					// grab author id of matched user
-					$author_id = get_author_id_by_display_name( get_search_query() );
+					$author_ids = get_author_id_by_display_name( get_search_query() );
 
-					include( locate_template( 'partials/content-author-search.php' ) );
+					foreach( $author_ids as $author_id ){
+
+						include( locate_template( 'partials/content-author-search.php' ) );
+
+					}
 
 				}
 
