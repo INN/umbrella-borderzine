@@ -135,8 +135,24 @@ function borderzine_search_posts_by_author( $posts_search, $wp_query_obj ) {
 		return $posts_search;
 	}
 
+	// count matching users
+	$matching_users_count = count( $matching_users );
+
+	// prepare array with correct amount of placeholders that match the user count
+	$matching_users_placeholders = array_fill( 0, $matching_users_count, '%s' );
+
+	// put all matching user ids into one string
+	$matching_users_str = implode( ', ', $matching_users_placeholders );
+
+	// use wpdb to prepare our partial query
+	$posts_search_author_query = 
+		$wpdb->prepare(
+			"OR ( ".$wpdb->posts.".post_author IN ( $matching_users_str )))",
+			$matching_users
+		);
+
 	// modify our posts search query to also search for posts with matching user
-	$posts_search = str_replace( ')))', ")) OR ( {$wpdb->posts}.post_author IN (" . implode( ',', array_map( 'absint', $matching_users ) ) . ")))", $posts_search );
+	$posts_search = str_replace( ')))', ")) ".$posts_search_author_query, $posts_search );
 
 	return $posts_search;
 
