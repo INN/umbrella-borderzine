@@ -125,10 +125,8 @@ function borderzine_search_posts_by_author( $posts_search, $wp_query_obj ) {
 	$args = array(
 		'count_total' => false,
 		'search' => sprintf( '*%s*', $search ),
-		'search_fields' => array(
-			'display_name',
-		),
 		'fields' => 'ID',
+		'has_published_posts' => true,
 	);
 	$matching_users = get_users( $args );
 
