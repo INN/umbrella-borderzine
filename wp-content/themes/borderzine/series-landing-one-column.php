@@ -41,13 +41,13 @@ $content_span = array( 'one-column' => 12, 'two-column' => 8, 'three-column' => 
 ?>
 
 <?php if ( $opt['header_enabled'] ) : ?>
+	<?php
+		/**
+		 * Use Largo's gutenberg alignfull styles to make a fullwidth hero image
+		 */
+		largo_hero( $post, 'alignfull' );
+	?>
 	<section id="series-header" class="span12 clearfix">
-		<?php
-			/**
-			 * Use Largo's gutenberg alignfull styles to make a fullwidth hero image
-			 */
-			largo_hero( $post, 'alignfull' );
-		?>
 		<h1 class="entry-title"><?php the_title(); ?></h1>
 		<?php
 		if ( $opt['show_series_byline'] )
