@@ -122,7 +122,7 @@ get_header();
 			<?php
 
 				// check if search query matches an author name
-				if( get_author_id_by_display_name( get_search_query() ) ){
+				if( get_author_id_by_display_name( get_search_query() ) && !is_paged() ){
 
 					// grab author id of matched user
 					$author_ids = get_author_id_by_display_name( get_search_query() );
