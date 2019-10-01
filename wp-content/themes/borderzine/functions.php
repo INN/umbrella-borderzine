@@ -12,6 +12,7 @@ $includes = array(
 	'/inc/byline_class.php',
 	'/inc/compat-bunyad.php',
 	'/inc/post-tags.php',
+	'/inc/widgets/class-borderzine-3-col-widget.php',
 	'/homepages/layout.php',
 );
 foreach ( $includes as $include ) {
