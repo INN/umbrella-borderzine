@@ -175,7 +175,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				__( 'Recent %1$s' , 'largo' ),
 				of_get_option( 'posts_term_plural', 'Posts' )
 			),
-			'num_posts' => 5,
+			'num_posts' => 6,
 			'avoid_duplicates' => '',
 			'thumbnail_display' => 'small',
 			'image_align' => 'left',
@@ -208,7 +208,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'num_posts' ) ); ?>"><?php esc_html_e( 'Number of posts to show:', 'largo' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'num_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_posts' ) ); ?>" value="<?php echo esc_attr( $instance['num_posts'] ); ?>" style="width:90%;" />
+			<input id="<?php echo esc_attr( $this->get_field_id( 'num_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_posts' ) ); ?>" value="<?php echo esc_attr( $instance['num_posts'] ); ?>" style="width:90%;" type="number" min="3" step="3"/>
 		</p>
 
 		<p>
@@ -245,7 +245,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>"><?php esc_html_e( 'Excerpt Length (# of Sentences):', 'largo' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_sentences' ) ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" />
+			<input id="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_sentences' ) ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" type="number" />
 		</p>
 
 		<p>
