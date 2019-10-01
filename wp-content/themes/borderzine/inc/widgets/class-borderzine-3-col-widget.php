@@ -153,7 +153,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
 		$instance['image_align'] = sanitize_key( $new_instance['image_align'] );
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
-		$instance['num_sentences'] = intval( $new_instance['num_sentences'] );
+		$instance['num_sentences'] = ( 0 > intval( $new_instance['num_sentences'] ) ) ? intval( $new_instance['num_sentences'] ) : 0 ;
 		$instance['show_byline'] = ! empty( $new_instance['show_byline'] );
 		$instance['hide_byline_date'] = ! empty( $new_instance['hide_byline_date'] );
 		$instance['show_top_term'] = ! empty( $new_instance['show_top_term'] );
@@ -245,7 +245,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>"><?php esc_html_e( 'Excerpt Length (# of Sentences):', 'largo' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_sentences' ) ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" type="number" />
+			<input id="<?php echo esc_attr( $this->get_field_id( 'num_sentences' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_sentences' ) ); ?>" value="<?php echo (int) $instance['num_sentences']; ?>" style="width:90%;" type="number" min="0"/>
 		</p>
 
 		<p>
