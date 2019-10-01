@@ -64,6 +64,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 			'post__not_in'   => get_option( 'sticky_posts' ),
 			'posts_per_page' => isset( $instance['num_posts'] ) ? $instance['num_posts'] : 3,
 			'post_status'    => 'publish',
+			'tax_query'      => array(),
 		);
 
 		if ( isset( $instance['avoid_duplicates'] ) && 1 === $instance['avoid_duplicates'] ) {
@@ -78,12 +79,27 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		if ( ! empty( $instance['author'] ) ) {
 			$query_args['author'] = $instance['author'];
 		}
-		if ( ! empty( $instance['taxonomy'] ) && ! empty( $instance['term'] ) ) {
-			$query_args['tax_query'] = array(
+		if ( ! empty( $instance['prominence'] ) ) {
+			$query_args['tax_query'] = array_merge(
+				$query_args['tax_query'],
 				array(
-					'taxonomy' => $instance['taxonomy'],
-					'field'    => 'slug',
-					'terms'    => $instance['term'],
+					array(
+						'taxonomy' => 'prominence',
+						'field'    => 'slug',
+						'terms'    => $instance['prominence'],
+					),
+				)
+			);
+		}
+		if ( ! empty( $instance['taxonomy'] ) && ! empty( $instance['term'] ) ) {
+			$query_args['tax_query'] = array_merge(
+				$query_args['tax_query'],
+				array(
+					array(
+						'taxonomy' => $instance['taxonomy'],
+						'field'    => 'slug',
+						'terms'    => $instance['term'],
+					),
 				)
 			);
 		}
@@ -101,7 +117,10 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				$shown_ids[] = get_the_ID();
 
 				// wrap the items in li's.
-				$output .= '<li>';
+				$output .= sprintf(
+					'<li class="%1$s" >',
+					implode( ' ', get_post_class( '', get_the_id() ) )
+				);
 
 				$context = array(
 					'instance' => $instance,
@@ -159,6 +178,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		$instance['show_top_term'] = ! empty( $new_instance['show_top_term'] );
 		$instance['show_icon'] = ! empty( $new_instance['show_icon'] );
 		$instance['cat'] = intval( $new_instance['cat'] );
+		$instance['prominence'] = intval( $new_instance['prominence'] );
 		$instance['tag'] = sanitize_text_field( $new_instance['tag'] );
 		$instance['taxonomy'] = sanitize_text_field( $new_instance['taxonomy'] );
 		$instance['term'] = sanitize_text_field( $new_instance['term'] );
@@ -286,6 +306,22 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 							'name' => $this->get_field_name( 'author' ),
 							'show_option_all' => __( 'None (all authors)', 'largo' ),
 							'selected' => $instance['author']
+						)
+					);
+				?>
+			</label>
+		</p>
+		<p>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'prominences' ) ); ?>"><?php esc_html_e( 'Limit to prominences: ', 'largo' ); ?>
+				<?php
+					wp_dropdown_categories(
+						array(
+							'name' => $this->get_field_name( 'prominences' ),
+							'show_option_all' => __( 'None (all prominences)', 'largo' ),
+							'hide_empty' => 0,
+							'hierarchical' => 0,
+							'taxonomy' => 'prominence',
+							'selected' => $instance['prominences'],
 						)
 					);
 				?>
