@@ -84,7 +84,7 @@
                     padding-bottom: 20px;
                     &:not(:first-of-type) {
                         h5 {
-                            font-size: 14px;
+                            font-size: 16px;
                         }
                     }
                 }
@@ -115,15 +115,22 @@
                     li {
                         padding-bottom: 20px;
                         a:first-of-type {
-                            padding-right: 10px;
+                            float: left;
                         }
                         img {
                             max-width: 110px;
                         }
                         h5 {
-                            font-size: 14px;
-                            a {
-                                width: 65%!important;
+                            font-size: 16px;
+                            display: flex;
+                            max-width: 60%;
+                        }
+                        .byline {
+                            display: inline-block;
+                            .author {
+                                a {
+                                    float: none;
+                                }
                             }
                         }
                     }
