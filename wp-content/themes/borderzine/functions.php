@@ -90,3 +90,85 @@ function borderzine_has_avatar( $email ) {
 	}
 	return false;
 }
+
+/**
+ * Modifies the default WordPress search query to see if the 
+ * search terms match any author names and return any posts found by said author
+ * 
+ * @param String $posts_search SQL query for the search
+ * @param Object $wp_query_obj The current wp_query object
+ * @return String $posts_search SQL query for the search
+ * @since 0.1
+ */
+function borderzine_search_posts_by_author( $posts_search, $wp_query_obj ) {
+
+	if ( !is_search() || empty( $posts_search ) ) {
+		return $posts_search;
+	}
+
+	global $wpdb;
+
+	// search all authors to see if any having a name that matches the search term
+	$search = sanitize_text_field( get_query_var( 's' ) );
+	$args = array(
+		'count_total' => false,
+		'search' => sprintf( '*%s*', $search ),
+		'fields' => 'ID',
+		'has_published_posts' => true,
+	);
+	$matching_users = get_users( $args );
+
+	// don't modify the query if there aren't any matching users
+	if ( empty( $matching_users ) ) {
+		return $posts_search;
+	}
+
+	// count matching users
+	$matching_users_count = count( $matching_users );
+
+	// prepare array with correct amount of placeholders that match the user count
+	$matching_users_placeholders = array_fill( 0, $matching_users_count, '%s' );
+
+	// put all matching user ids into one string
+	$matching_users_str = implode( ', ', $matching_users_placeholders );
+
+	// use wpdb to prepare our partial query
+	$posts_search_author_query = 
+		$wpdb->prepare(
+			"OR ( ".$wpdb->posts.".post_author IN ( $matching_users_str )))",
+			$matching_users
+		);
+
+	// modify our posts search query to also search for posts with matching user
+	$posts_search = str_replace( ')))', ")) ".$posts_search_author_query, $posts_search );
+
+	return $posts_search;
+
+}
+add_filter( 'posts_search', 'borderzine_search_posts_by_author', 10, 2 );
+
+/**
+ * Finds author ids by their display name
+ * 
+ * @param String $display_name The display name to search for
+ * @return String $user_ids The IDs of matched users from the display name
+ */
+function get_author_id_by_display_name( $display_name ) {
+
+	global $wpdb;
+	
+	$display_name = sanitize_text_field( $display_name );
+
+    if( !$users = $wpdb->get_results( $wpdb->prepare( "SELECT `ID` FROM $wpdb->users WHERE `display_name` LIKE '%%%s%%%'", $wpdb->esc_like( $display_name ) ) ) ){
+		return false;
+	}
+
+	$user_ids = array();
+
+	foreach( $users as $user ){
+		array_push( $user_ids, $user->ID );
+	}
+
+	return $user_ids;
+	
+}
