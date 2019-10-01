@@ -12,13 +12,6 @@ $email = $author_obj->user_email;
  */
 $user_meta = get_user_meta($author_obj->ID);
 
-$show_email = 'off';
-if (isset($user_meta['show_email'][0])) {
-	$show_email = $user_meta['show_email'][0];
-} else if ( !empty($author_obj->show_email) ) {
-	$show_email = $author_obj->show_email;
-}
-
 ?>
 <ul class="social-links">
 	<?php if ( $fb = $author_obj->fb ) { ?>
@@ -30,12 +23,6 @@ if (isset($user_meta['show_email'][0])) {
 	<?php if ( $twitter = $author_obj->twitter ) { ?>
 		<li class="twitter">
 			<a href="https://twitter.com/<?php echo largo_twitter_url_to_username ( $twitter ); ?>"><i class="icon-twitter"></i></a>
-		</li>
-	<?php } ?>
-
-	<?php if ( $email && $show_email !== 'off' ) { ?>
-		<li class="email">
-			<a class="email" href="mailto:<?php echo esc_attr( $email ); ?>" title="e-mail <?php echo esc_attr( $author_obj->display_name ); ?>"><i class="icon-mail"></i></a>
 		</li>
 	<?php } ?>
 
