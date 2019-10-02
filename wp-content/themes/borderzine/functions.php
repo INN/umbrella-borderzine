@@ -25,7 +25,7 @@ function borderzine_stylesheets() {
 
 	wp_dequeue_style( 'largo-child-styles' );
 	wp_deregister_style( 'largo-child-styles' );
-	
+
 	$suffix = (LARGO_DEBUG) ? '.min' : '';
 	wp_enqueue_style(
 		'largo-child-styles',
