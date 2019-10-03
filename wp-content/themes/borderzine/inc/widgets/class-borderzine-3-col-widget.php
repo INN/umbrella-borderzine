@@ -85,7 +85,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				array(
 					array(
 						'taxonomy' => 'prominence',
-						'field'    => 'slug',
+						'field'    => 'term_id',
 						'terms'    => $instance['prominence'],
 					),
 				)
@@ -312,16 +312,16 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 			</label>
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'prominences' ) ); ?>"><?php esc_html_e( 'Limit to prominences: ', 'largo' ); ?>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'prominence' ) ); ?>"><?php esc_html_e( 'Limit to prominence: ', 'largo' ); ?>
 				<?php
 					wp_dropdown_categories(
 						array(
-							'name' => $this->get_field_name( 'prominences' ),
+							'name' => $this->get_field_name( 'prominence' ),
 							'show_option_all' => __( 'None (all prominences)', 'largo' ),
 							'hide_empty' => 0,
 							'hierarchical' => 0,
 							'taxonomy' => 'prominence',
-							'selected' => $instance['prominences'],
+							'selected' => $instance['prominence'],
 						)
 					);
 				?>
