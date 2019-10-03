@@ -242,11 +242,23 @@
 
 // https://github.com/INN/umbrella-borderzine/issues/66
 @media ( max-width: 768px ) {
-	// hide excerpts on homepage on mobile
-	#homepage-featured .top-story p,
-	#homepage-featured .sub-stories p,
-	#homepage-after-featured .largo-recent-posts p {
-		display: none;
-	}
-	// move image thumbnails to small and on right
+  // hide excerpts on homepage on mobile
+  #homepage-featured .top-story p,
+  #homepage-featured .sub-stories p,
+  #homepage-after-featured .largo-recent-posts p {
+    display: none;
+  }
+  // move image thumbnails to small and on right
+  #homepage-after-featured .homepage-middle-1x3 aside.even ul li a:first-of-type {
+    float: right;
+  }
+  #homepage-after-featured .largo-recent-posts img {
+    float: right;
+    max-width: 110px;
+    margin-left: 10px;
+  }
+  #homepage-featured .top-story,
+  #homepage-featured .sub-stories {
+    padding: 0;
+  }
 }
