@@ -46,9 +46,10 @@ class Borderzine extends Homepage {
 			),
 			'sidebars' => array(
                 'Homepage Sidebar (Appears to the right of the homepage content under the Featured area)',
-				'Homepage Middle 4x4 (The middle area of the homepage that displays posts evenly side by side.)',
-				'Homepage Middle 1x3 (The middle area of the homepage that displays 1 big post to the left with 3 smaller posts more to the right.)',
-				'Homepage Middle 1x3 2nd (The middle area of the homepage that displays 1 big post to the left with 3 smaller posts more to the right.)',
+				'Homepage Middle 1st 1x3 (The middle area of the homepage that displays 1 big post to the left with 3 smaller posts more to the right.)',
+				'Homepage Middle 2nd 1x3 (The middle area of the homepage that displays 1 big post to the left with 3 smaller posts more to the right.)',
+				'Homepage Middle 3rd 1x3 (The middle area of the homepage that displays 1 big post to the left with 3 smaller posts more to the right.)',
+				'Homepage Middle 4th 1x3 (The middle area of the homepage that displays 1 big post to the left with 3 smaller posts more to the right.)',
 				'Homepage Middle 1x1x1 (The middle area of the homepage that displays 3 posts from separate categories.)',
 				'Homepage Bottom (The bottom area of the homepage)',
 			),

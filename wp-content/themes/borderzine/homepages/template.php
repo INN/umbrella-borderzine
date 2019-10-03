@@ -85,19 +85,24 @@ $topstory_classes = 'top-story span8';
 </div>
 <div class="row-fluid clearfix">
     <div id="homepage-after-featured" class="span8">
-        <div class="homepage-middle-4x4">
+        <div class="homepage-middle-1x3">
         <?php
-            dynamic_sidebar( 'Homepage Middle 4x4' );
+            dynamic_sidebar( 'Homepage Middle 1st 1x3' );
         ?>
         </div>
         <div class="homepage-middle-1x3">
         <?php
-            dynamic_sidebar( 'Homepage Middle 1x3' );
+            dynamic_sidebar( 'Homepage Middle 2nd 1x3' );
         ?>
 		</div>
 		<div class="homepage-middle-1x3">
         <?php
-            dynamic_sidebar( 'Homepage Middle 1x3 2nd' );
+            dynamic_sidebar( 'Homepage Middle 3rd 1x3' );
+        ?>
+		</div>
+		<div class="homepage-middle-1x3">
+        <?php
+            dynamic_sidebar( 'Homepage Middle 4th 1x3' );
         ?>
         </div>
         <div class="homepage-middle-1x1x1">
