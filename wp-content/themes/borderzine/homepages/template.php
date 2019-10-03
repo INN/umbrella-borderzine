@@ -65,9 +65,8 @@ $topstory_classes = 'top-story span8';
 				while ( $substories->have_posts() ) : $substories->the_post(); $shown_ids[] = get_the_ID();
 					if ( $count <= 3 ) : ?>
 						<div <?php post_class( 'story' ); ?> >
-							
-							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail(); ?></a>
+							<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
 							<h5 class="byline"><?php largo_byline( true, false, get_the_ID() ); ?></h5>
 							<?php largo_excerpt( get_post(), 2 ); ?>
 						</div>
