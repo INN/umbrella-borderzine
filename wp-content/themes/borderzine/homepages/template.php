@@ -94,6 +94,11 @@ $topstory_classes = 'top-story span8';
         <?php
             dynamic_sidebar( 'Homepage Middle 1x3' );
         ?>
+		</div>
+		<div class="homepage-middle-1x3">
+        <?php
+            dynamic_sidebar( 'Homepage Middle 1x3 2nd' );
+        ?>
         </div>
         <div class="homepage-middle-1x1x1">
         <?php
