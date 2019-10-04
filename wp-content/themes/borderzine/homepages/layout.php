@@ -7,9 +7,10 @@ class Borderzine extends Homepage {
     var $description = 'The homepage for Borderzine.';
     var $sidebars = array(
 		'Homepage Sidebar',
-		'Homepage Middle 4x4',
-		'Homepage Middle 1x3',
-		'Homepage Middle 1x3 2nd',
+		'Homepage Middle 1st 1x3',
+		'Homepage Middle 2nd 1x3',
+		'Homepage Middle 3rd 1x3',
+		'Homepage Middle 4th 1x3',
 		'Homepage Middle 1x1x1',
         'Homepage Bottom'
 	);
