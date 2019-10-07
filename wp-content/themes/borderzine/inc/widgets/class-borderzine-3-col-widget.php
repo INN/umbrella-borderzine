@@ -141,7 +141,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		} else {
 			printf(
 				'<p class="error"><strong>%1$s</strong></p>',
-				sprint(
+				sprintf(
 					// translators: %s is the word this site uses for "posts", like "articles" or "stories". It's a plural noun.
 					esc_html__( 'You don\'t have any recent %s', 'largo' ),
 					of_get_option( 'posts_term_plural', 'Posts' )
