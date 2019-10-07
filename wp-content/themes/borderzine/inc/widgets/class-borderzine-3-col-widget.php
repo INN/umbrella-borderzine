@@ -1,12 +1,10 @@
 <?php
 /**
  * Borderzine 3-Column recent posts widget and associated functions
- *
- * Copied from Largo Recent Posts
  */
 
 /**
- * Borderzine 3-Column recent posts widget
+ * The Borderzine 3-Column recent posts widget
  *
  * Copied from Largo Recent Posts
  */
