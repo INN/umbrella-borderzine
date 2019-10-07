@@ -21,7 +21,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		);
 		parent::__construct(
 			'borderzine-3-col', // Base ID
-			__( 'Three-Column Recent Posts', 'largo' ), // Name
+			__( 'Borderzine Three-Column Recent Posts', 'borderzine' ), // Name
 			$widget_ops // Args
 		);
 
