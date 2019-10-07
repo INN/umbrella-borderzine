@@ -49,12 +49,6 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		// Add the link to the title.
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
-		echo wp_kses_post( $args['before_widget'] );
-
-		if ( ! empty( $title ) ) {
-			echo $args['before_title'] . wp_kses_post( $title ). $args['after_title'];
-		}
-
 		$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
@@ -100,6 +94,20 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 					),
 				)
 			);
+		}
+
+		/*
+		 * here begins the widget output
+		 */
+
+		echo wp_kses_post( $args['before_widget'] );
+
+		if ( ! empty( $title ) ) {
+			echo $args['before_title'] . wp_kses_post( $title ). $args['after_title'];
+		}
+
+		if ( ! empty( $instance['linkurl'] ) && ! empty( $instance['linktext'] ) ) {
+			echo '<p class="morelink btn btn-primary"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
 		}
 
 		echo '<ul>';
@@ -152,9 +160,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		// close the ul
 		echo '</ul>';
 
-		if ( ! empty( $instance['linkurl'] ) ) {
-			echo '<p class="morelink"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
-		}
+		// close the widget
 		echo wp_kses_post( $args['after_widget'] );
 
 		// Restore global $post
