@@ -13,6 +13,7 @@ $includes = array(
 	'/inc/compat-bunyad.php',
 	'/inc/post-tags.php',
 	'/homepages/layout.php',
+	'/inc/widgets/class-borderzine-6-col-widget.php',
 );
 foreach ( $includes as $include ) {
 	if ( 0 === validate_file( get_stylesheet_directory() . $include ) ) {
