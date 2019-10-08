@@ -49,18 +49,18 @@ class Borderzine_6_Col_Widget extends WP_Widget {
 
 		echo $args['before_widget'];
 
-        if ( $title ) echo $args['before_title'] . $title . $args['after_title'];
+        if ( $title && ! empty( $title ) ) echo $args['before_title'] . $title . $args['after_title'];
         
-        if( ! empty( $instance['linkurl'] ) ) {
+        if( ! empty( $instance['linkurl'] ) && ! empty( $instance['linktext'] ) ) {
 			echo '<p class="morelink btn btn-primary"><a href="' . esc_url( $instance['linkurl'] ) . '">' . esc_html( $instance['linktext'] ) . '</a></p>';
 		}
 
-		$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
+		$thumb = 'rect_thumb_half';
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
 		$query_args = array (
 			'post__not_in' 	 => get_option( 'sticky_posts' ),
-			'posts_per_page' => isset( $instance['num_posts'] ) ? $instance['num_posts'] : 3,
+			'posts_per_page' => isset( $instance['num_posts'] ) ? $instance['num_posts'] : 6,
 			'post_status'	=> 'publish'
 		);
 
@@ -137,7 +137,7 @@ class Borderzine_6_Col_Widget extends WP_Widget {
 		$instance['num_posts'] = intval( $new_instance['num_posts'] );
 		$instance['avoid_duplicates'] = ! empty( $new_instance['avoid_duplicates'] ) ? 1 : 0;
 		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
-		$instance['image_align'] = sanitize_key( $new_instance['image_align'] );
+		$instance['image_align'] = 'none';
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
 		$instance['num_sentences'] = intval( $new_instance['num_sentences'] );
 		$instance['show_byline'] = ! empty($new_instance['show_byline']);
@@ -157,10 +157,9 @@ class Borderzine_6_Col_Widget extends WP_Widget {
 	function form( $instance ) {
 		$defaults = array(
 			'title' => __( 'Recent ' . of_get_option( 'posts_term_plural', 'Posts' ), 'largo' ),
-			'num_posts' => 5,
+			'num_posts' => 6,
 			'avoid_duplicates' => '',
-			'thumbnail_display' => 'small',
-			'image_align' => 'left',
+			'thumbnail_display' => 'rect_thumb_half',
 			'excerpt_display' => 'num_sentences',
 			'num_sentences' => 2,
 			'show_byline' => '',
@@ -184,36 +183,17 @@ class Borderzine_6_Col_Widget extends WP_Widget {
 		?>
 
 		<p>
-			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:', 'largo' ); ?></label>
-			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:90%;" />
+			<label for="<?php echo $this->get_field_id( 'title' ); ?>" type="text"><?php _e( 'Title:', 'largo' ); ?></label>
+			<input id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" value="<?php echo $instance['title']; ?>" style="width:90%;" type="text"/>
 		</p>
 
 		<p>
 			<label for="<?php echo $this->get_field_id( 'num_posts' ); ?>"><?php _e('Number of posts to show:', 'largo'); ?></label>
-			<input id="<?php echo $this->get_field_id( 'num_posts' ); ?>" name="<?php echo $this->get_field_name( 'num_posts' ); ?>" value="<?php echo $instance['num_posts']; ?>" style="width:90%;" />
+			<input id="<?php echo $this->get_field_id( 'num_posts' ); ?>" name="<?php echo $this->get_field_name( 'num_posts' ); ?>" value="<?php echo $instance['num_posts']; ?>" style="width:90%;" type="number" min="6" step="6"/>
 		</p>
 
 		<p>
 			<input class="checkbox" type="checkbox" <?php echo $duplicates; ?> id="<?php echo $this->get_field_id( 'avoid_duplicates' ); ?>" name="<?php echo $this->get_field_name( 'avoid_duplicates' ); ?>" /> <label for="<?php echo $this->get_field_id( 'avoid_duplicates' ); ?>"><?php _e( 'Avoid Duplicate Posts?', 'largo' ); ?></label>
-		</p>
-
-		<p>
-			<label for="<?php echo $this->get_field_id( 'thumbnail_display' ); ?>"><?php _e( 'Thumbnail Image', 'largo' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'thumbnail_display' ); ?>" name="<?php echo $this->get_field_name( 'thumbnail_display' ); ?>" class="widefat" style="width:90%;">
-				<option <?php selected( $instance['thumbnail_display'], 'small'); ?> value="small"><?php _e( 'Small (60x60)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'medium'); ?> value="medium"><?php _e( 'Medium (140x140)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'large'); ?> value="large"><?php _e( 'Large (Full width of the widget)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'none'); ?> value="none"><?php _e( 'None', 'largo' ); ?></option>
-			</select>
-		</p>
-
-		<!-- Image alignment -->
-		<p>
-			<label for="<?php echo $this->get_field_id( 'image_align' ); ?>"><?php _e( 'Image Alignment', 'largo' ); ?></label>
-			<select id="<?php echo $this->get_field_id( 'image_align' ); ?>" name="<?php echo $this->get_field_name( 'image_align' ); ?>" class="widefat" style="width:90%;">
-				<option <?php selected( $instance['image_align'], 'left'); ?> value="left"><?php _e( 'Left align', 'largo' ); ?></option>
-				<option <?php selected( $instance['image_align'], 'right'); ?> value="right"><?php _e( 'Right align', 'largo' ); ?></option>
-			</select>
 		</p>
 
 		<p>
