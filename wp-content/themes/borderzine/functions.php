@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Child theme for Borderzine
