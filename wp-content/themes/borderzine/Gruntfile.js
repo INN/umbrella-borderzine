@@ -39,13 +39,9 @@ module.exports = function(grunt) {
                     'less:development',
                     'cssmin'
                 ]
-            },
-            sphinx: {
-                files: ['docs/*.rst', 'docs/*/*.rst'],
-                tasks: ['docs']
             }
         },
-        
+
         cssmin: {
             target: {
                 options: {
