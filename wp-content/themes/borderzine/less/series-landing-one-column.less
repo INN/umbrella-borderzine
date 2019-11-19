@@ -3,3 +3,46 @@
 .span12:first-of-type{
   margin-left: 0;
 }
+
+.series-landing-cta-container {
+  text-align: center;
+  border: 1px solid @black;
+  padding: 20px;
+  .btn {
+    background: @orange;
+    color: @white;
+    text-transform: uppercase;
+    padding: 1% 10%;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.series-landing-how-to-listen-container {
+  text-align: center;
+  border: 1px solid #282828;
+  padding: 40px;
+  margin-top: 40px;
+  display: flex;
+  h5 {
+    flex: 1;
+    margin-bottom: 0;
+  }
+  ul {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    li {
+      flex: 1;
+      margin-bottom: 0;
+      span {
+        color: @orange;
+        &:hover {
+          color: @black;
+        }
+      }
+    }
+  }
+}
