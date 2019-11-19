@@ -84,7 +84,7 @@
                     padding-bottom: 20px;
                     &:not(:first-of-type) {
                         h5 {
-                            font-size: 14px;
+                            font-size: 16px;
                         }
                     }
                 }
@@ -115,15 +115,22 @@
                     li {
                         padding-bottom: 20px;
                         a:first-of-type {
-                            padding-right: 10px;
+                            float: left;
                         }
                         img {
                             max-width: 110px;
                         }
                         h5 {
-                            font-size: 14px;
-                            a {
-                                width: 65%!important;
+                            font-size: 16px;
+                            display: flex;
+                            max-width: 60%;
+                        }
+                        .byline {
+                            display: inline-block;
+                            .author {
+                                a {
+                                    float: none;
+                                }
                             }
                         }
                     }
@@ -231,4 +238,28 @@
             }
         }
     }
+}
+
+// https://github.com/INN/umbrella-borderzine/issues/66
+@media ( max-width: 768px ) {
+  // hide excerpts on homepage on mobile
+  #homepage-featured .top-story p,
+  #homepage-featured .sub-stories p,
+  #homepage-after-featured .largo-recent-posts p {
+    display: none;
+  }
+  // move image thumbnails to small and on right
+  #homepage-after-featured .homepage-middle-1x3 aside.even ul li a:first-of-type {
+    float: right;
+  }
+  #homepage-after-featured .largo-recent-posts img {
+    float: right;
+    max-width: 110px;
+    margin-left: 10px;
+  }
+  #homepage-featured div.top-story,
+  #homepage-featured div.sub-stories {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
