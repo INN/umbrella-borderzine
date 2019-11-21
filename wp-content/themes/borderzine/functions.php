@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Child theme for Borderzine
@@ -12,6 +11,7 @@ $includes = array(
 	'/inc/byline_class.php',
 	'/inc/compat-bunyad.php',
 	'/inc/post-tags.php',
+	'/inc/widgets/class-borderzine-3-col-widget.php',
 	'/homepages/layout.php',
 	'/inc/widgets/class-borderzine-6-col-widget.php',
 );
@@ -25,7 +25,7 @@ function borderzine_stylesheets() {
 
 	wp_dequeue_style( 'largo-child-styles' );
 	wp_deregister_style( 'largo-child-styles' );
-	
+
 	$suffix = (LARGO_DEBUG) ? '.min' : '';
 	wp_enqueue_style(
 		'largo-child-styles',
@@ -155,12 +155,11 @@ add_filter( 'posts_search', 'borderzine_search_posts_by_author', 10, 2 );
  * @return String $user_ids The IDs of matched users from the display name
  */
 function get_author_id_by_display_name( $display_name ) {
-
 	global $wpdb;
-	
+
 	$display_name = sanitize_text_field( $display_name );
 
-    if( !$users = $wpdb->get_results( $wpdb->prepare( "SELECT `ID` FROM $wpdb->users WHERE `display_name` LIKE '%%%s%%%'", $wpdb->esc_like( $display_name ) ) ) ){
+	if( !$users = $wpdb->get_results( $wpdb->prepare( "SELECT `ID` FROM $wpdb->users WHERE `display_name` LIKE '%%%s%%%'", $wpdb->esc_like( $display_name ) ) ) ){
 		return false;
 	}
 
@@ -171,5 +170,4 @@ function get_author_id_by_display_name( $display_name ) {
 	}
 
 	return $user_ids;
-	
 }
