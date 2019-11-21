@@ -137,7 +137,6 @@ class Borderzine_6_Col_Widget extends WP_Widget {
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['num_posts'] = intval( $new_instance['num_posts'] );
 		$instance['avoid_duplicates'] = ! empty( $new_instance['avoid_duplicates'] ) ? 1 : 0;
-		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
 		$instance['image_align'] = 'none';
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
 		$instance['num_sentences'] = intval( $new_instance['num_sentences'] );
