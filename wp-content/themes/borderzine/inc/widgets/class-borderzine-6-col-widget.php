@@ -102,7 +102,8 @@ class Borderzine_6_Col_Widget extends WP_Widget {
 				$context = array(
 					'instance' => $instance,
 					'thumb' => $thumb,
-					'excerpt' => $excerpt
+					'excerpt' => $excerpt,
+					'podcast' => false,
 				);
 
 				ob_start();
