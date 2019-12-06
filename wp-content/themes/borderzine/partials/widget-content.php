@@ -9,7 +9,7 @@
  */
 
 // the thumbnail image (if we're using one)
-if ( $podcast === true ) {
+if ( isset( $podcast) && $podcast === true ) {
 	printf(
 		'<p class="mediaplay"><a href="%1$s">%2$s <span class="visuallyhidden">%3$s</span></a></p>',
 		get_permalink(),
