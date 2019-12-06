@@ -129,7 +129,6 @@ class Borderzine_5_Col_Podcasts_Widget extends WP_Widget {
 
 				$context = array(
 					'instance' => $instance,
-					'thumb' => $thumb,
                     'excerpt' => $excerpt,
                     'podcast' => true,
 				);
@@ -166,6 +165,13 @@ class Borderzine_5_Col_Podcasts_Widget extends WP_Widget {
 		// Restore global $post
 		wp_reset_postdata();
 		$post = $preserve;
+
+		// we need to render an empty partial with `podcast => false` in order to prevent the widget after this from showing podcast icons
+		$context = array(
+			'podcast' => false
+		);
+		largo_render_template( 'partials/widget', 'content', $context );
+
 	}
 
 	public function update( $new_instance, $old_instance ) {
