@@ -168,9 +168,9 @@ class Borderzine_5_Col_Podcasts_Widget extends WP_Widget {
 
 		// we need to render an empty partial with `podcast => false` in order to prevent the widget after this from showing podcast icons
 		$context = array(
-			'podcast' => false
+			'podcast' => false,
 		);
-		largo_render_template( 'partials/widget', 'content', $context );
+		largo_render_template( 'partials/widget', '', $context );
 
 	}
 
