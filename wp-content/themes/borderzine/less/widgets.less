@@ -55,3 +55,56 @@
         grid-gap: 1em;
     }
 }
+.borderzine-5-col-podcasts {
+    .widgettitle {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    p.morelink {
+        a {
+            color: @white;
+        }
+    }
+    ul {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+        li {
+            flex: 1 1 20%;
+            h5 {
+                margin-right: 16px;
+                a {
+                    overflow-wrap: break-word;
+                }
+            }
+            p.mediaplay {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 20px;
+                vertical-align: middle;
+                padding: 5px;
+                border: 1px solid @orange;
+                margin: 0 auto;
+                color: @orange;
+                margin-bottom: 15px;
+                a {
+                    .encircle {
+                        color: @orange;
+                        margin-left: 15%;
+                    }
+                }
+            }
+            p {
+                margin-right: 16px;
+            }
+        }
+        @media (max-width: 769px) {
+            flex-direction: column;
+        }
+    }
+}
