@@ -325,7 +325,7 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 							'hide_empty' => 0,
 							'hierarchical' => 0,
 							'taxonomy' => 'prominence',
-							'selected' => $instance['prominence'],
+							'selected' => isset( $instance['prominence'] ) ? $instance['prominence'] : null,
 						)
 					);
 				?>
