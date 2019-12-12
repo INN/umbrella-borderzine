@@ -1,14 +1,14 @@
 <?php
 /**
- * Borderzine 3-Column recent posts widget and associated functions
+ * Borderzine 5-Column recent posts widget and associated functions
  */
 
 /**
- * The Borderzine 3-Column recent posts widget
+ * The Borderzine 5-Column recent posts widget
  *
  * Copied from Largo Recent Posts
  */
-class Borderzine_3_Col_Widget extends WP_Widget {
+class Borderzine_5_Col_Podcasts_Widget extends WP_Widget {
 
 	/**
 	 * Register widget with WordPress.
@@ -16,12 +16,12 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 	public function __construct() {
 
 		$widget_ops = array(
-			'classname' => 'borderzine-3-col',
-			'description' => __( 'A three-column widget to display recent posts (optionally limited by category, author, tag or taxonomy) in various formats (Specific to Borderzine theme)', 'largo' ),
+			'classname' => 'borderzine-5-col-podcasts',
+			'description' => __( 'A five-column widget to display recent podcasts in various formats (Specific to Borderzine theme)', 'largo' ),
 		);
 		parent::__construct(
-			'borderzine-3-col', // Base ID
-			__( 'Borderzine Three-Column Recent Posts', 'borderzine' ), // Name
+			'borderzine-5-col-podcasts', // Base ID
+			__( 'Borderzine Five-Column Podcasts', 'borderzine' ), // Name
 			$widget_ops // Args
 		);
 
@@ -49,7 +49,6 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		// Add the link to the title.
 		$title = apply_filters( 'widget_title', empty( $instance['title'] ) ? '' : $instance['title'], $instance, $this->id_base );
 
-		$thumb = isset( $instance['thumbnail_display'] ) ? $instance['thumbnail_display'] : 'small';
 		$excerpt = isset( $instance['excerpt_display'] ) ? $instance['excerpt_display'] : 'num_sentences';
 
 		$query_args = array (
@@ -130,8 +129,8 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 				$context = array(
 					'instance' => $instance,
-					'thumb' => $thumb,
-					'excerpt' => $excerpt,
+                    'excerpt' => $excerpt,
+                    'podcast' => true,
 				);
 
 				ob_start();
@@ -166,6 +165,13 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		// Restore global $post
 		wp_reset_postdata();
 		$post = $preserve;
+
+		// we need to render an empty partial with `podcast => false` in order to prevent the widget after this from showing podcast icons
+		$context = array(
+			'podcast' => false,
+		);
+		largo_render_template( 'partials/widget', '', $context );
+
 	}
 
 	public function update( $new_instance, $old_instance ) {
@@ -173,8 +179,6 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 		$instance['title'] = sanitize_text_field( $new_instance['title'] );
 		$instance['num_posts'] = intval( $new_instance['num_posts'] );
 		$instance['avoid_duplicates'] = ! empty( $new_instance['avoid_duplicates'] ) ? 1 : 0;
-		$instance['thumbnail_display'] = sanitize_key( $new_instance['thumbnail_display'] );
-		$instance['image_align'] = sanitize_key( $new_instance['image_align'] );
 		$instance['excerpt_display'] = sanitize_key( $new_instance['excerpt_display'] );
 		$instance['num_sentences'] = ( 0 > intval( $new_instance['num_sentences'] ) ) ? intval( $new_instance['num_sentences'] ) : 0 ;
 		$instance['show_byline'] = ! empty( $new_instance['show_byline'] );
@@ -199,10 +203,8 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 				__( 'Recent %1$s' , 'largo' ),
 				of_get_option( 'posts_term_plural', 'Posts' )
 			),
-			'num_posts' => 6,
+			'num_posts' => 10,
 			'avoid_duplicates' => '',
-			'thumbnail_display' => 'small',
-			'image_align' => 'left',
 			'excerpt_display' => 'num_sentences',
 			'num_sentences' => 2,
 			'show_byline' => '',
@@ -232,30 +234,11 @@ class Borderzine_3_Col_Widget extends WP_Widget {
 
 		<p>
 			<label for="<?php echo esc_attr( $this->get_field_id( 'num_posts' ) ); ?>"><?php esc_html_e( 'Number of posts to show:', 'largo' ); ?></label>
-			<input id="<?php echo esc_attr( $this->get_field_id( 'num_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_posts' ) ); ?>" value="<?php echo esc_attr( $instance['num_posts'] ); ?>" style="width:90%;" type="number" min="3" step="3"/>
+			<input id="<?php echo esc_attr( $this->get_field_id( 'num_posts' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'num_posts' ) ); ?>" value="<?php echo esc_attr( $instance['num_posts'] ); ?>" style="width:90%;" type="number" min="5" step="5"/>
 		</p>
 
 		<p>
 			<input class="checkbox" type="checkbox" <?php echo $duplicates; ?> id="<?php echo esc_attr( $this->get_field_id( 'avoid_duplicates' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'avoid_duplicates' ) ); ?>" /> <label for="<?php echo esc_attr( $this->get_field_id( 'avoid_duplicates' ) ); ?>"><?php esc_html_e( 'Avoid Duplicate Posts?', 'largo' ); ?></label>
-		</p>
-
-		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'thumbnail_display' ) ); ?>"><?php esc_html_e( 'Thumbnail Image', 'largo' ); ?></label>
-			<select id="<?php echo esc_attr( $this->get_field_id( 'thumbnail_display' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'thumbnail_display' ) ); ?>" class="widefat" style="width:90%;">
-				<option <?php selected( $instance['thumbnail_display'], 'small' ); ?> value="small"><?php esc_html_e( 'Small (60x60)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'medium' ); ?> value="medium"><?php esc_html_e( 'Medium (140x140)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'large' ); ?> value="large"><?php esc_html_e( 'Large (Full width of the widget)', 'largo' ); ?></option>
-				<option <?php selected( $instance['thumbnail_display'], 'none' ); ?> value="none"><?php esc_html_e( 'None', 'largo' ); ?></option>
-			</select>
-		</p>
-
-		<!-- Image alignment -->
-		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'image_align' ) ); ?>"><?php esc_html_e( 'Image Alignment', 'largo' ); ?></label>
-			<select id="<?php echo esc_attr( $this->get_field_id( 'image_align' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'image_align' ) ); ?>" class="widefat" style="width:90%;">
-				<option <?php selected( $instance['image_align'], 'left' ); ?> value="left"><?php esc_html_e( 'Left align', 'largo' ); ?></option>
-				<option <?php selected( $instance['image_align'], 'right' ); ?> value="right"><?php esc_html_e( 'Right align', 'largo' ); ?></option>
-			</select>
 		</p>
 
 		<p>
@@ -388,5 +371,5 @@ class Borderzine_3_Col_Widget extends WP_Widget {
  * Register the widget
  */
 add_action( 'widgets_init', function() {
-	register_widget( 'Borderzine_3_Col_Widget' );
+	register_widget( 'Borderzine_5_Col_Podcasts_Widget' );
 });
