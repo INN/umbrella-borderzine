@@ -45,7 +45,7 @@ if ( isset( $podcast) && $podcast === true ) {
 		<?php
 	} elseif( $thumb == 'rect_thumb_half' ){
 		$img_attr = array();
-		$img_attr = 'attachment-rect-thumb-half';
+		$img_attr['class'] = 'attachment-rect-thumb-half';
 		?>
 			<a href="<?php echo get_permalink(); ?>"><?php echo get_the_post_thumbnail( get_the_ID(), 'rect_thumb_half', $img_attr); ?></a>
 		<?php
