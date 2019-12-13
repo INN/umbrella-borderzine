@@ -1,5 +1,25 @@
 @import (reference) "./variables.less";
 
+#series-footer {
+  #sidebar-bottom {
+    margin-top: @baseline;
+    border-top: 1px solid @gray_light;
+    .widget {
+      .widgettitle {
+        margin-bottom: @baseline;
+      }
+      ul {
+        li {
+          h5 {
+            font-size: 16px;
+          }
+          margin-bottom: @baseline * 2;
+        }
+      }
+    }
+  }
+}
+
 .span12:first-of-type{
   margin-left: 0;
 }
@@ -19,28 +39,30 @@
   }
 }
 
-.series-landing-how-to-listen-container {
-  text-align: center;
-  border: 1px solid #282828;
-  padding: 40px;
-  margin-top: 40px;
-  display: flex;
-  h5 {
-    flex: 1;
-    margin-bottom: 0;
-  }
-  ul {
-    flex: 1;
+.widget {
+  .series-landing-how-to-listen-container {
+    text-align: center;
+    border: 1px solid #282828;
+    padding: 40px;
+    margin-top: 40px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    li {
+    h5 {
       flex: 1;
       margin-bottom: 0;
-      span {
-        color: @orange;
-        &:hover {
-          color: @black;
+    }
+    ul {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      li {
+        flex: 1;
+        margin-bottom: 0!important;
+        span {
+          color: @orange;
+          &:hover {
+            color: @black;
+          }
         }
       }
     }
