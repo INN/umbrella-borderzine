@@ -172,3 +172,29 @@ function get_author_id_by_display_name( $display_name ) {
 
 	return $user_ids;
 }
+
+/**
+ * Display a subscribe button in the navbars
+ * 
+ * @param str $location The location that this button is placed
+ * 
+ * @return str The formatted subscribe button
+ */
+function borderzine_subscribe_button( $location = null ) {
+
+    if( 'sticky' === $location ) {
+
+        printf( '<a class="subscribe-link" href="%1$s"><span>%2$s</span></a>',
+            esc_url( '\/subscribe\/' ),
+            esc_html( 'Subscribe' )
+        );
+
+    } else {
+
+        printf( '<div class="subscribe-btn"><a href="%1$s">%2$s</a></div>',
+            esc_url( '\/subscribe\/' ),
+            esc_html( 'Subscribe' )
+        );
+
+    }
+}
